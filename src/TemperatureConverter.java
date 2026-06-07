@@ -53,22 +53,26 @@ public class TemperatureConverter {
                 } else {
                     double temperature = Double.parseDouble(tempInput);
 
-                    // Prompt for unit
-                    System.out.print("Enter unit (C or F): ");
-                    String unit = scanner.nextLine().trim().toUpperCase();
+                    // Loop on unit prompt until a valid unit is entered
+                    boolean validUnit = false;
+                    while (!validUnit) {
+                        System.out.print("Enter unit (C or F): ");
+                        String unit = scanner.nextLine().trim().toUpperCase();
 
-                    if (!unit.equals("C") && !unit.equals("F")) {
-                        System.out.println("Error: \"" + unit
-                                + "\" is not a valid unit. Please enter C or F.");
-                    } else {
-                        double converted = convertTemperature(temperature, unit);
-
-                        if (unit.equals("C")) {
-                            System.out.printf("%.2f\u00b0C is equal to %.2f\u00b0F%n",
-                                    temperature, converted);
+                        if (!unit.equals("C") && !unit.equals("F")) {
+                            System.out.println("Error: \"" + unit
+                                    + "\" is not a valid unit. Please enter C or F.");
                         } else {
-                            System.out.printf("%.2f\u00b0F is equal to %.2f\u00b0C%n",
-                                    temperature, converted);
+                            double converted = convertTemperature(temperature, unit);
+
+                            if (unit.equals("C")) {
+                                System.out.printf("%.2f\u00b0C is equal to %.2f\u00b0F%n",
+                                        temperature, converted);
+                            } else {
+                                System.out.printf("%.2f\u00b0F is equal to %.2f\u00b0C%n",
+                                        temperature, converted);
+                            }
+                            validUnit = true;
                         }
                     }
                 }
